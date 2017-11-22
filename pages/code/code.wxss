@@ -1,0 +1,4 @@
+/* pages/wechat/wechat.wxss */
+.title{
+  text-align: center
+}

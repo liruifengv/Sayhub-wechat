@@ -4,7 +4,7 @@ page{
 .list-item{
   padding: 10px;
   background: #fff;
-  border-top: 1px solid #ddd;
+  margin-top: 10px; 
 }
 .title{
   font-size: 16px;

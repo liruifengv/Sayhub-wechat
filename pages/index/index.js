@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    articles: []
   },
 
   /**
@@ -12,8 +12,40 @@ Page({
    */
   onLoad: function (options) {
     console.log('首页加载成功')
+    this.getArticles()
   },
-
+  getArticles () {
+    var self = this
+    wx.request({
+      url: 'http://www.sayhub.me/api/articles?category=wechat',
+      header: {
+          'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        // console.log(res.data)
+        self.setData({ 
+          articles: res.data.articles
+        })
+      }
+    })
+  },
+  showDetail (e) {
+    let dataset = e.currentTarget.dataset
+    let item = dataset && dataset.item
+    let Id = item._id
+    wx.navigateTo({
+      url: `../detail/detail?Id=${Id}`,
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

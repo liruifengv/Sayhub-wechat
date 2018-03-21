@@ -5,38 +5,44 @@ Page({
    * 页面的初始数据
    */
   data: {
-    articles: []
+    article: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
-    console.log('code文章页加载成功')
-    this.getArticles()
+    // console.log('文章页详情页加载成功')
+    // console.log(option.Id)
+    this.getDetail(option.Id)
   },
-  showDetail (e) {
-    let dataset = e.currentTarget.dataset
-    let item = dataset && dataset.item
-    let Id = item._id
-    wx.navigateTo({
-      url: `../detail/detail?Id=${Id}`,
-      success: function(res){
-        // success
+  getDetail (Id) {
+    var self = this
+    wx.request({
+      url: `http://www.sayhub.me/api/article/${Id}`,
+      header: {
+          'content-type': 'application/json' // 默认值
       },
-      fail: function() {
-        // fail
-      },
-      complete: function() {
-        // complete
+      success (res) {
+        console.log(res.data)
+        self.setData({ 
+          article: res.data
+        })
+        console.log(self.data.article)
+        self.configPageData()
       }
     })
+  },
+  configPageData () {
+      let title = this.data.article.title
+      wx.setNavigationBarTitle({
+        title: title
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
   },
 
   /**
@@ -81,18 +87,6 @@ Page({
   
   },
   getArticles () {
-    var self = this
-    wx.request({
-      url: 'http://www.sayhub.me/api/articles?category=front_end',
-      header: {
-          'content-type': 'application/json' // 默认值
-      },
-      success (res) {
-        console.log(res.data)
-        self.setData({ 
-          articles: res.data.articles
-        })
-      }
-    })
+
   }
 })

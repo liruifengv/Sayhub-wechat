@@ -1,65 +1,18 @@
 <view>
-    <view class="list">
-      <view class="list-item">
-        <text class="title">以梦为马，不日抵达。</text>
-        <view>
-          <text class="abstract">梦想是个好东西，希望你也有。二十来岁，马上毕业，正是开始奋斗谈梦想的年纪。今天我想聊聊梦想。我的梦想是其实很简单，只要能够写写字就好。我的对口工作呢，是程序员。当初选择这个专业呢，不是因为爱好，也对行业不是很了解，算是巧合，阴差阳错。而在逐渐了解了互联网，了解了程序员这个职业之后，我发现这不是我特别喜欢的职业。我刚刚结束了一段实习工作，初探程序员世界一角。朝九晚六，晚上随时有问题随时打开电脑修改BUG，偶尔还可能周六加个班。这还是实习的情况，如果正式工作了，996都是很正常的工作周期。前段时间微博的工程师还因为鹿晗搞崩微博服务器，从而在婚礼现场加班修复。可想而知，这一行也是十分的艰辛。
-          </text>
-        </view>
-        <view class="info">
-          <text class="author">李瑞丰v</text>
-          <text class="time">2017-10-16</text>
-        </view>
+  <view class="list">
+    <view class="list-item" wx:for="{{articles}}" wx:key="item.id"  data-item="{{item}}" wx:for-item="item" bindtap="showDetail">
+      <text class="title">{{item.title}}</text>
+      <view>
+        <text class="abstract">{{item.content_text}}
+        </text>
       </view>
-  
-      <view class="list-item">
-        <text class="title">以梦为马，不日抵达。</text>
-        <view>
-          <text class="abstract">梦想是个好东西，希望你也有。二十来岁，马上毕业，正是开始奋斗谈梦想的年纪。今天我想聊聊梦想。我的梦想是其实很简单，只要能够写写字就好。我的对口工作呢，是程序员。当初选择这个专业呢，不是因为爱好，也对行业不是很了解，算是巧合，阴差阳错。而在逐渐了解了互联网，了解了程序员这个职业之后，我发现这不是我特别喜欢的职业。我刚刚结束了一段实习工作，初探程序员世界一角。朝九晚六，晚上随时有问题随时打开电脑修改BUG，偶尔还可能周六加个班。这还是实习的情况，如果正式工作了，996都是很正常的工作周期。前段时间微博的工程师还因为鹿晗搞崩微博服务器，从而在婚礼现场加班修复。可想而知，这一行也是十分的艰辛。
-          </text>
-        </view>
-        <view class="info">
-          <text class="author">李瑞丰v</text>
-          <text class="time">2017-10-16</text>
-        </view>
-      </view>
-  
-      <view class="list-item">
-        <text class="title">以梦为马，不日抵达。</text>
-        <view>
-          <text class="abstract">梦想是个好东西，希望你也有。二十来岁，马上毕业，正是开始奋斗谈梦想的年纪。今天我想聊聊梦想。我的梦想是其实很简单，只要能够写写字就好。我的对口工作呢，是程序员。当初选择这个专业呢，不是因为爱好，也对行业不是很了解，算是巧合，阴差阳错。而在逐渐了解了互联网，了解了程序员这个职业之后，我发现这不是我特别喜欢的职业。我刚刚结束了一段实习工作，初探程序员世界一角。朝九晚六，晚上随时有问题随时打开电脑修改BUG，偶尔还可能周六加个班。这还是实习的情况，如果正式工作了，996都是很正常的工作周期。前段时间微博的工程师还因为鹿晗搞崩微博服务器，从而在婚礼现场加班修复。可想而知，这一行也是十分的艰辛。
-          </text>
-        </view>
-        <view class="info">
-          <text class="author">李瑞丰v</text>
-          <text class="time">2017-10-16</text>
-        </view>
-      </view>
-  
-      <view class="list-item">
-        <text class="title">以梦为马，不日抵达。</text>
-        <view>
-          <text class="abstract">梦想是个好东西，希望你也有。二十来岁，马上毕业，正是开始奋斗谈梦想的年纪。今天我想聊聊梦想。我的梦想是其实很简单，只要能够写写字就好。我的对口工作呢，是程序员。当初选择这个专业呢，不是因为爱好，也对行业不是很了解，算是巧合，阴差阳错。而在逐渐了解了互联网，了解了程序员这个职业之后，我发现这不是我特别喜欢的职业。我刚刚结束了一段实习工作，初探程序员世界一角。朝九晚六，晚上随时有问题随时打开电脑修改BUG，偶尔还可能周六加个班。这还是实习的情况，如果正式工作了，996都是很正常的工作周期。前段时间微博的工程师还因为鹿晗搞崩微博服务器，从而在婚礼现场加班修复。可想而知，这一行也是十分的艰辛。
-          </text>
-        </view>
-        <view class="info">
-          <text class="author">李瑞丰v</text>
-          <text class="time">2017-10-16</text>
-        </view>
-      </view>
-      <view class="list-item">
-        <text class="title">以梦为马，不日抵达。</text>
-        <view>
-          <text class="abstract">梦想是个好东西，希望你也有。二十来岁，马上毕业，正是开始奋斗谈梦想的年纪。今天我想聊聊梦想。我的梦想是其实很简单，只要能够写写字就好。我的对口工作呢，是程序员。当初选择这个专业呢，不是因为爱好，也对行业不是很了解，算是巧合，阴差阳错。而在逐渐了解了互联网，了解了程序员这个职业之后，我发现这不是我特别喜欢的职业。我刚刚结束了一段实习工作，初探程序员世界一角。朝九晚六，晚上随时有问题随时打开电脑修改BUG，偶尔还可能周六加个班。这还是实习的情况，如果正式工作了，996都是很正常的工作周期。前段时间微博的工程师还因为鹿晗搞崩微博服务器，从而在婚礼现场加班修复。可想而知，这一行也是十分的艰辛。
-          </text>
-        </view>
-        <view class="info">
-          <text class="author">李瑞丰v</text>
-          <text class="time">2017-10-16</text>
-        </view>
-      </view>
-      <view class="line">
-        <text>我是有底线的~</text>
+      <view class="info">
+        <text class="author">{{item.author}}</text>
+        <text class="time">{{item.created}}</text>
       </view>
     </view>
+    <view class="line">
+      <text>我是有底线的~</text>
+    </view>
   </view>
+</view>

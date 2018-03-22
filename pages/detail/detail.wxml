@@ -1,3 +1,15 @@
-<view>
-test
+<import src="../../lib/wxParse/wxParse.wxml"/>
+<scroll-view scroll-y="true" enable-back-to-top="true" class="root-wrap">
+<view class="wrapper">
+  <view class="detail_header">
+    <view class="detail_title">{{article.title}}</view>
+    <view class="article_info">
+      <text class="author">{{article.author}}</text>
+      <text class="time">{{article.created}}</text>      
+    </view>
+  </view>
+  <view class="content">
+    <template is="wxParse" data="{{wxParseData:detail.nodes}}"/>
+  </view>
 </view>
+</scroll-view> 

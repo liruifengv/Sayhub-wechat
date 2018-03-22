@@ -1,6 +1,6 @@
 <view>
   <view class="list">
-    <view class="list-item" wx:for="{{articles}}" wx:key="item.id"  data-item="{{item}}" wx:for-item="item" bindtap="showDetail">
+    <view class="list-item" wx:for="{{articles}}" wx:key="item._id"  data-item="{{item}}" wx:for-item="item" bindtap="showDetail">
       <text class="title">{{item.title}}</text>
       <view>
         <text class="abstract">{{item.content_text}}

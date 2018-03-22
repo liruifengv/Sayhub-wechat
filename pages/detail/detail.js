@@ -1,4 +1,9 @@
 // pages/wechat/wechat.js
+// WxParse HtmlFormater 用来解析 content 文本为小程序视图
+import WxParse from '../../lib/wxParse/wxParse';
+// 把 html 转为化标准安全的格式
+import HtmlFormater from '../../lib/htmlFormater';
+
 Page({
 
   /**
@@ -30,6 +35,9 @@ Page({
         })
         console.log(self.data.article)
         self.configPageData()
+        let htmlContent = self.data.article.content_render
+        WxParse.wxParse('detail','html',htmlContent,self,0)
+        console.log(self.data.article)
       }
     })
   },

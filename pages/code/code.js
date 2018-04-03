@@ -1,4 +1,5 @@
 // pages/wechat/wechat.js
+import util from '../../utils/util';
 Page({
 
   /**
@@ -14,6 +15,31 @@ Page({
   onLoad: function (option) {
     console.log('code文章页加载成功')
     this.getArticles()
+  },
+  getArticles () {
+    var self = this
+    wx.request({
+      url: 'http://www.sayhub.me/api/articles?category=front_end',
+      header: {
+          'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        let formatData = self.formatArticleData(res.data.articles)
+        self.setData({ 
+          articles: formatData
+        })
+      }
+    })
+  },
+  formatArticleData (data) {
+    let formatData = undefined
+    if (data && data.length) {
+      formatData = data.map((item) => {
+        item.createdTime = util.formatDate(item.created)
+        return item
+      }) || []
+    }
+    return formatData    
   },
   showDetail (e) {
     let dataset = e.currentTarget.dataset
@@ -32,6 +58,17 @@ Page({
       }
     })
   },
+  // formatDate (dateStr) {
+  //   if (!dateStr) {
+  //     return '';
+  //   }
+  //   let originYear = dateStr.slice(0,4)
+  //   let originMongth = dateStr.slice(5,7)      
+  //   let originDate = dateStr.slice(8,10)
+  //   let originTime = dateStr.slice(11,19)
+  //   let convertStr = `${originYear}年${originMongth}月${originDate}日 ${originTime}`
+  //   return convertStr
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -77,22 +114,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
-  },
-  getArticles () {
-    var self = this
-    wx.request({
-      url: 'http://www.sayhub.me/api/articles?category=front_end',
-      header: {
-          'content-type': 'application/json' // 默认值
-      },
+  onShareAppMessage () {
+    let title = 'Sayhub 前端技术文章'    
+    return {
+      title: title,
+      path: `/pages/code/code`,
       success (res) {
-        console.log(res.data)
-        self.setData({ 
-          articles: res.data.articles
-        })
+        // 转发成功
+      },
+      fail (err) {
+        // 转发失败
       }
-    })
+    }
   }
 })

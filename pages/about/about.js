@@ -25,9 +25,9 @@ Page({
     onUnload: function () {
         // 页面关闭
     },
-    onShareAppMessage: function () {
+    onShareAppMessage () {
         return {
-            title: '在这里畅所欲言',
+            title: 'Sayhub 在这里畅所欲言',
             path: '/pages/about/about',
             success: function (res) {
                 // 分享成功

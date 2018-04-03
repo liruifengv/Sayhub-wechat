@@ -8,7 +8,7 @@
       </view>
       <view class="info">
         <text class="author">{{item.author}}</text>
-        <text class="time">{{item.created}}</text>
+        <text class="time">{{item.createdTime}}</text>
       </view>
     </view>
     <view class="line">

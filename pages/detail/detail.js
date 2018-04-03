@@ -3,6 +3,7 @@
 import WxParse from '../../lib/wxParse/wxParse';
 // 把 html 转为化标准安全的格式
 import HtmlFormater from '../../lib/htmlFormater';
+import util from '../../utils/util';
 
 Page({
 
@@ -29,17 +30,24 @@ Page({
           'content-type': 'application/json' // 默认值
       },
       success (res) {
-        console.log(res.data)
+        let formatData = self.formatArticleData(res.data)
+        console.log(formatData)
         self.setData({ 
-          article: res.data
+          article: formatData
         })
-        console.log(self.data.article)
         self.configPageData()
-        let htmlContent = self.data.article.content_render
+        let htmlContent = res.data.content_render
         WxParse.wxParse('detail','html',htmlContent,self,0)
-        console.log(self.data.article)
       }
     })
+  },
+  formatArticleData (data) {
+    let formatData = undefined
+    if (data) {
+      formatData = data
+      data.createdTime = util.formatDate(data.created)
+    }
+    return formatData    
   },
   configPageData () {
       let title = this.data.article.title
@@ -91,8 +99,18 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage () {
+    let title = this.data.article.title    
+    return {
+      title: title,
+      path: `/pages/detail/detail`,
+      success (res) {
+        // 转发成功
+      },
+      fail (err) {
+        // 转发失败
+      }
+    }
   },
   getArticles () {
 

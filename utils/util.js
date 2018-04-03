@@ -1,19 +1,15 @@
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
-
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-}
-
-const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+const formatDate = dateStr => {
+  if (!dateStr) {
+    return '';
+  }
+  let originYear = dateStr.slice(0,4)
+  let originMongth = dateStr.slice(5,7)      
+  let originDate = dateStr.slice(8,10)
+  let originTime = dateStr.slice(11,19)
+  let convertStr = `${originYear}年${originMongth}月${originDate}日 ${originTime}`
+  return convertStr
 }
 
 module.exports = {
-  formatTime: formatTime
+  formatDate: formatDate
 }

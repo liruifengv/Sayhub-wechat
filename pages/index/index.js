@@ -1,3 +1,4 @@
+import util from '../../utils/util';
 Page({
 
   /**
@@ -22,12 +23,22 @@ Page({
           'content-type': 'application/json' // 默认值
       },
       success (res) {
-        // console.log(res.data)
+        let formatData = self.formatArticleData(res.data.articles)
         self.setData({ 
-          articles: res.data.articles
+          articles: formatData
         })
       }
     })
+  },
+  formatArticleData (data) {
+    let formatData = undefined
+    if (data && data.length) {
+      formatData = data.map((item) => {
+        item.createdTime = util.formatDate(item.created)
+        return item
+      }) || []
+    }
+    return formatData    
   },
   showDetail (e) {
     let dataset = e.currentTarget.dataset
@@ -91,7 +102,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    
+  onShareAppMessage () {
+    let title = 'Sayhub 公众号文章'    
+    return {
+      title: title,
+      path: `/pages/index/index`,
+      success (res) {
+        // 转发成功
+      },
+      fail (err) {
+        // 转发失败
+      }
+    }
   }
 })
